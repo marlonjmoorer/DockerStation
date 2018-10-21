@@ -1,0 +1,31 @@
+{
+  "name": "DockerStation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electromon . --inspect",
+    "edev": "ELECTRON_START_URL=http://localhost:1234 electron .",
+    "dev": "parcel ./client/index.html -d build/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "electromon": "^1.0.10",
+    "electron": "^3.0.5",
+    "electron-reload": "^1.2.5",
+    "electron-reloader": "^0.2.0",
+    "parcel-bundler": "^1.10.3"
+  },
+  "dependencies": {
+    "dockerode": "^2.5.7",
+    "react": "^16.5.2",
+    "react-desktop": "^0.3.7",
+    "react-dom": "^16.5.2"
+  }
+}
