@@ -1,19 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Button } from 'react-desktop/windows';
-class HelloMessage extends React.Component {
-    render() {
-        return <div>
-            <div className="container">
-                <h1>Hello {this.props.name}</h1>
-                <Button push color={"red"} onClick={() => console.log('Clicked!')}>
-                    Press me  
-                </Button>
-            </div>
-        </div>
-    }
-}
+import { Provider } from 'react-redux'
+import configureStore from './store';
+import App from "./App";
 
-let App = document.getElementById("app");
 
-ReactDOM.render(<HelloMessage name="Yomi" />, App);
+ReactDOM.render( 
+<Provider store={configureStore()}>
+    <App />
+</Provider>, document.getElementById("app"));

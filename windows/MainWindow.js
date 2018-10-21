@@ -1,36 +1,39 @@
 const {BrowserWindow,ipcMain} = require('electron')
 const path = require("path")
 const url= require('url')
-class MainWindow {
+const Docker = require('dockerode')
+class MainWindow extends BrowserWindow {
     constructor(options) {
-
         options = options || {
             width: 800,
-            height: 600
+            height: 600,
+            show:false
         }
-
-        this.win = new BrowserWindow(options)
-        this.win.on('closed', () => {
+        super(options)
+        this.on('ready-to-show',()=> { 
+            this.show(); 
+            this.focus(); 
+        });
+        this.on('closed', () => {
             this.win = null
         })
-        ipcMain.on('asynchronous-message', (event, arg) => {
-           // console.log(arg) // prints "ping"
-            event.sender.send('asynchronous-reply', 'pong')
+        ipcMain.on('load_images', (event, arg) => {
+            this.docker.listImages().then(images=>{
+                event.sender.send('load_images_reply', images)
+            })
         })
+        this.docker= new Docker() 
     }
 
-    render() {
+    load() {
 
         const startUrl = process.env.ELECTRON_START_URL || url.format({
             pathname: path.join(__dirname, './build/index.html'),
             protocol: 'file:',
             slashes: true
         });
-
-
-        this.win.loadURL(startUrl)
-        this.win
-            .webContents
+        this.loadURL(startUrl)
+        this.webContents
             .openDevTools()
     }
 }

@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electromon . --inspect",
-    "edev": "ELECTRON_START_URL=http://localhost:1234 electron .",
+    "edev": "ELECTRON_START_URL=http://localhost:1234 electron . --inspect",
     "dev": "parcel ./client/index.html -d build/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-env": "^7.1.0",
     "babel-core": "^6.26.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "electromon": "^1.0.10",
@@ -23,9 +25,16 @@
     "parcel-bundler": "^1.10.3"
   },
   "dependencies": {
+    "@material-ui/core": "^3.2.2",
+    "@material-ui/icons": "^3.0.1",
+    "bluebird": "^3.5.2",
     "dockerode": "^2.5.7",
     "react": "^16.5.2",
     "react-desktop": "^0.3.7",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }

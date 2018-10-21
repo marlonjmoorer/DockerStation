@@ -4,5 +4,8 @@ const MainWindow = require('./windows/MainWindow')
 try {
 	require('electron-reloader')(module);
 } catch (err) {}
-  
-app.on('ready',()=> new MainWindow().render())
+
+app.on('ready',()=> {
+    const win= new MainWindow()
+    win.load()
+})
