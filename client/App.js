@@ -1,26 +1,37 @@
 import React from 'react'
+
 import Navbar from "./components/Navbar";
 import {connect} from 'react-redux';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import ImagesList from './components/ImagesList';
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Container, Row, Col} from 'react-grid-system';
+import {routes} from './Navigation';
+ 
 
 const App = (props) => {
     console.log(props)
-    return ( <div>
-        <AppBar position="absolute" >
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Clipped drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-       <Navbar/>
-        <main >
-            <ImagesList/>
-        </main>
-      </div>
+    return (
+        <BrowserRouter>
+            <Container fluid>
+                <Row>
+                    <Col xs={4}>
+                        <Navbar/>
+                    </Col>
+                    <Col>
+                        <Switch>
+                            {routes.map(({path,exact=false,Component})=>
+                                <Route path={path} exact={exact}  component={Component}/>
+                            )}
+                        </Switch> 
+                    </Col>
+                </Row>
+            </Container>
+                {/* <Navbar/>
+                <Switch>
+                    <Route exact path="/" component={() =><h2> Home </h2>}/>
+                    <Route path="/images" component={ImagesList}/>
+                </Switch> */}
+        </BrowserRouter>
     )
 }
 export default App

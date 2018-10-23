@@ -1,12 +1,15 @@
 import React from 'react'
 import ImagesList from './components/ImagesList'
-export default [
+export const routes= [
     {
-        title:"Images",
-        Page:ImagesList
+        title:"Home",
+        path:'/',
+        exact:true,
+        Component:()=><h2>Home</h2>
     },
     {
-        title:"Containers",
-        Page:()=><h2>L</h2>
+       title:"Images",
+        path:'/images',
+        Component:ImagesList
     }
 ]

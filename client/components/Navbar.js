@@ -1,45 +1,33 @@
+import React, {Component} from 'react';
+import {withRouter, Link} from 'react-router-dom';
+import {Menu, MenuItem} from '@blueprintjs/core';
+import {routes} from '../Navigation';
 
-import React ,{Component}from 'react';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-export default class extends Component {
-    
-  
-    constructor() {
-      super();
+class Navbar extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state={
+      url:props.match.url
     }
-  
-    render() {
-      return (
-        <Drawer
-        variant="permanent"
-        classes={{
-          paper:  {
-    position: 'relative',
-    width: 240,
-  },
-        }}
-        anchor='left'>
-        <List component="nav">
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
-        </ListItem>
-      </List>
-      </Drawer>
-      );
-    }
+  }
+  navigate=(url)=>{
+    console.log(url)
+    this.props.history.push(url)
+    this.setState({url})
+  }
+
+  render() {
+    console.log(this.props)
+    console.log(this.state)
+    let {url}=this.state
+    return (
+      <Menu>
+        {routes.map(({path ,icon="new-text-box",title})=> 
+          <MenuItem active={path==url} icon={icon} onClick={e=>this.navigate(path)} text={title}/> )
+        }
+      </Menu>
+    );
+  }
 }
+export default withRouter(Navbar)

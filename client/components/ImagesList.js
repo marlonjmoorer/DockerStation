@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {loadImages} from '../actions/image.actions';
-import Button from '@material-ui/core/Button';
 class ImagesList extends Component {
 
     constructor(props) {
@@ -16,9 +15,6 @@ class ImagesList extends Component {
         let images=this.props.images||[]
         return (
          <h3>
-         <Button variant="contained" color="primary">
-      Hello World
-    </Button>
               {renderItems(images)}
          </h3>
         )
