@@ -5,9 +5,10 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electromon . --inspect",
-    "edev": "ELECTRON_START_URL=http://localhost:1234 electron . --inspect",
-    "dev": "parcel ./client/index.html -d build/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "edev": "electron . --inspect",
+    "dev": "node bundler.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "all": "npm run dev & npm run edev"
   },
   "keywords": [],
   "author": "",
@@ -23,13 +24,16 @@
     "electron-reload": "^1.2.5",
     "electron-reloader": "^0.2.0",
     "parcel-bundler": "^1.10.3",
+    "sass": "^1.14.3",
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@blueprintjs/core": "^3.7.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "bluebird": "^3.5.2",
+    "bulma": "^0.7.2",
     "dockerode": "^2.5.7",
+    "electron-devtools-installer": "^2.2.4",
+    "node-sass": "^4.9.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-grid-system": "^4.3.1",

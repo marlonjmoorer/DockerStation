@@ -1,4 +1,4 @@
-const {ipcRenderer} =window.require('electron')
+const {ipcRenderer} =require('electron')
 export const sendAction=(action="",data)=>{
     return new Promise((resolve,reject)=>{
          ipcRenderer.on(action,(event, arg) => {

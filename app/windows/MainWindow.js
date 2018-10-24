@@ -22,6 +22,11 @@ class MainWindow extends BrowserWindow {
                 event.sender.send('load_images', images)
             })
         })
+        ipcMain.on('load_containers', (event, arg) => {
+            this.docker.listContainers().then(containers=>{
+                event.sender.send('load_containers', containers)
+            })
+        })
         this.docker= new Docker() 
     }
 

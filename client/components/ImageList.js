@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {loadImages} from '../actions/image.actions';
-class ImagesList extends Component {
+
+ 
+
+class ImageList extends Component {
 
     constructor(props) {
         super(props);
@@ -14,9 +17,13 @@ class ImagesList extends Component {
         console.log(this.props)
         let images=this.props.images||[]
         return (
-         <h3>
-              {renderItems(images)}
-         </h3>
+
+            <nav className="panel">
+                <p className="panel-heading">
+                Images
+                </p>
+                {renderItems(images)}
+            </nav>
         )
     }
 }
@@ -26,7 +33,15 @@ export default connect(
     }), dispatch => ({
         load: () => dispatch(loadImages())
     })
-)(ImagesList)
+)(ImageList)
 
 const renderItems=images=>
-images.map(image=><h3>L</h3>)
+images.map(image=>
+    <a className="panel-block is-active">
+    <span className="panel-icon">
+      <i className="fas fa-book" aria-hidden="true"></i>
+    </span>
+    bulma
+  </a>
+   
+)
