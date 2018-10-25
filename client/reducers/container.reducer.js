@@ -1,6 +1,6 @@
 export default (state = {containers:[]}, action) => {
     switch (action.type) {
-     case 'LOAD_CONTAINERS':
+     case 'LOADED_CONTAINERS':
       return {
         containers: action.payload
       }

@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
-
+import {bindActionCreators} from 'redux';
 import ContainerListItem from './ContainerListItem';
-import {getContainers}from '../actions/container.actions';
+import * as containerActions from '../actions/container.actions';
 
- 
 
 class ContainerList extends Component {
 
@@ -13,7 +12,10 @@ class ContainerList extends Component {
         this.state = {};
     }
     componentDidMount() {
-        this.props.load()
+        this.props.fetchDockerContainers()
+    }
+    openContainer=(id)=>{
+        this.props.openContainer(id)
     }
     render() {
         console.log(this.props)
@@ -22,9 +24,16 @@ class ContainerList extends Component {
 
             <nav className="panel">
                 <p className="panel-heading">
-                Containers
+                Containers 
+               
+                <a class="button is-primary is-pulled-right">
+                    <span class="icon">
+                        <i class="far fa-plus-square"></i>
+                    </span>
+                    <span>Create</span>
+                </a>
                 </p>
-                {renderItems(containers)}
+                {containers.map(container=><ContainerListItem key={container.Id} onClick={this.openContainer} container={container}/>)}
             </nav>
         )
     }
@@ -33,11 +42,11 @@ export default connect(
     state => ({
         ...state.container
     }), dispatch => ({
-        load: () => dispatch(getContainers())
+        ...bindActionCreators(containerActions, dispatch)
     })
 )(ContainerList)
 
 const renderItems=containers=>
 containers.map(container=>
-    <ContainerListItem container={container}/ >
+    <ContainerListItem key={container.Id} container={container}/ >
 )
